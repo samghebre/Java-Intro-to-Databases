@@ -25,7 +25,8 @@ public class Main {
         menu = new ArrayList<>();
         menu.add("Exit");
         menu.add("Add new person");
-        menu.add("Remove person");
+        menu.add("Delete person");
+        menu.add("Update person info");
         /**
          * Add your menu items here
          */
@@ -49,7 +50,6 @@ public class Main {
             while (!endProgram) {
                 /* Your code goes here */
                 int menuOption = main.displayMenu();
-
                 switch (menuOption) {
                     case 0:
                         System.out.println("Goodbye!!");
@@ -60,6 +60,9 @@ public class Main {
                         break;
                     case 2:
                         System.out.println("Delete a person");
+                        break;
+                    case 3:
+                        System.out.println("Update needed");
                         break;
                     default:
                         break;
