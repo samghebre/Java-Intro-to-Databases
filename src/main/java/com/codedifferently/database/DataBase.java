@@ -2,6 +2,8 @@ package com.codedifferently.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Logger;
 
 public class DataBase {
@@ -20,7 +22,13 @@ public class DataBase {
         }
     }
 
-    public DataBase() throws DataBaseConnectionException {
+    public Statement DataBase() throws DataBaseConnectionException, SQLException {
         getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("INSERT INTO PERSON" + "VALUES('Sam', 'Ghebremedhin', 51, 'samuelka2001@yahoo.com')");
+        connection.close();
+        return statement;
     }
+
+
 }

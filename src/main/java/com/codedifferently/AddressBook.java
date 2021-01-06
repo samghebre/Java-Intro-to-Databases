@@ -1,62 +1,58 @@
 package com.codedifferently;
 
 import com.codedifferently.database.DataBase;
-import com.codedifferently.database.DataBaseConnectionException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBook {
-   private Person owner;
+    private Person owner;
     private List<Person> people;
     private DataBase dataBase;
 
-    {
-        try {
-            dataBase = new DataBase();
-        } catch (DataBaseConnectionException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     /**
      * An example of Dependency injection
+     *
      * @param dataBase
      */
-    public AddressBook(DataBase dataBase) throws DataBaseConnectionException {
+    public AddressBook(DataBase dataBase) {
         this.dataBase = dataBase;
         this.people = new ArrayList<Person>();
 
     }
 
 
-    public AddressBook() throws DataBaseConnectionException {
-    }
-
-    public Person getOwner(){
+    public Person getOwner() {
         return owner;
     }
 
     public void setOwner(Person person) {
         this.owner = person;
     }
-    public void addPerson(Person person){
+
+    public void addPerson(Person person) {
         people.add(person);
     }
-    public void removePerson(Person person){
+
+    public void removePerson(Person person) {
         people.remove(person);
     }
+
     public Person getPersonByEmail(String email) {
-        for (Person person : people){
-            if(person.getEmail().equals(email)){
-                return person;
+        for (Person person : people) {
+            if (!person.getEmail().equals(email)) {
+                return null;
+            } else {
+
             }
+            return person;
         }
         return null;
     }
 
-    public List<Person> getAllPeople(Person person){
+
+
+   public List<Person> getAllPeople(){
         return people;
     }
 
@@ -64,3 +60,4 @@ public class AddressBook {
         return true;
     }
 }
+

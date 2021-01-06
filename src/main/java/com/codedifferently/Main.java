@@ -3,6 +3,7 @@ package com.codedifferently;
 import com.codedifferently.database.DataBase;
 import com.codedifferently.database.DataBaseConnectionException;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class Main {
     private static Scanner scanner;
 
     private ArrayList<String> menu;
-    public Main() throws DataBaseConnectionException {
+    public Main() throws DataBaseConnectionException, SQLException {
         dataBase = new DataBase();
         scanner = new Scanner(System.in);
         addressBook = new AddressBook(dataBase);
@@ -24,7 +25,7 @@ public class Main {
         menu = new ArrayList<>();
         menu.add("Exit");
         menu.add("Add new person");
-
+        menu.add("Remove person");
         /**
          * Add your menu items here
          */
@@ -49,20 +50,40 @@ public class Main {
                 /* Your code goes here */
                 int menuOption = main.displayMenu();
 
-                switch(menuOption){
+                switch (menuOption) {
                     case 0:
                         System.out.println("Goodbye!!");
                         endProgram = true;
                         break;
                     case 1:
-                        System.out.println("Do stuff");
+                        System.out.println("Add a person");
+                        break;
+                    case 2:
+                        System.out.println("Delete a person");
                         break;
                     default:
                         break;
                 }
             }
-        } catch (DataBaseConnectionException e) {
-            System.out.println("Your database could not be connected to.");
+        } catch (DataBaseConnectionException | SQLException e) {
+        }
+        System.out.println("Your database could not be connected to.");
+
+        try {
+            String sql = "SELECT Samuel, Ghebremedhin from PERSON";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3308/addressbook?createDatabaseIfNotExist=true&useSSL=false", "developer01", "pass");
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                String firstName = rs.getNString("Samuel");
+                System.out.println("Found" + firstName);
+            }
+
+        } catch (SQLException se) {
+            System.err.println("Got an exception!");
+            System.err.println(se.getMessage());
+
         }
     }
 }

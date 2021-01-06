@@ -23,7 +23,7 @@ public class Person {
 
 
     public String getFirstName() {
-        firstName = "";
+        firstName = "Rome";
         return firstName;
     }
 
@@ -33,7 +33,7 @@ public class Person {
     }
 
     public String getLastName() {
-        lastName = "";
+        lastName = "Paris";
         return lastName;
     }
 
@@ -50,20 +50,9 @@ public class Person {
         this.age = age;
     }
 
-//    public char getGender(String gender) {
-//        if (gender.equals("female")) {
-//            return 'F';
-//        } else {
-//            return 'M';
-//        }
-//    }
-//
-//    public void setGender(char gender) {
-//        this.gender = gender;
-//    }
 
     public String getEmail() {
-        email = "";
+        email = "samuelka2001@yahoo.com";
         return email;
     }
 

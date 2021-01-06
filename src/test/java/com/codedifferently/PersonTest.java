@@ -9,7 +9,7 @@ public class PersonTest {
     @Test
     public void testGetFirstName(){
         Person person = new Person();
-        String expected = "";
+        String expected = "Rome";
         String actual = person.getFirstName();
         Assert.assertEquals(expected,actual);
 
@@ -18,7 +18,7 @@ public class PersonTest {
     @Test
     public void testGetLastName(){
         Person person = new Person();
-        String expected = "";
+        String expected = "Paris";
         String actual = person.getLastName();
          Assert.assertEquals(expected,actual);
 
@@ -38,7 +38,7 @@ public class PersonTest {
     @Test
     public void testGetEmail(){
         Person person = new Person();
-        String expected = "";
+        String expected = "samuelka2001@yahoo.com";
         String actual = person.getEmail();
 
         Assert.assertEquals(expected,actual);
@@ -46,14 +46,4 @@ public class PersonTest {
         System.out.println(actual);
     }
 
-//    @Test
-//    public void testGender(){
-//        Person person = new Person();
-//        person.getGender("male");
-//        char expected = 'M';
-//        char actual = person.getGender("male");
-//        Assert.assertEquals(expected,actual);
-//
-//        System.out.println(actual);
-//    }
 }
