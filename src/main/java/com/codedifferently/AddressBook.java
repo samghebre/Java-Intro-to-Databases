@@ -7,10 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBook {
-    private Person person = new Person();
-    private Owner Person = new Owner();
-    private List<Person> people = new ArrayList<>();
-    private DataBase dataBase = new DataBase();
+   private Person owner;
+    private List<Person> people;
+    private DataBase dataBase;
+
+    {
+        try {
+            dataBase = new DataBase();
+        } catch (DataBaseConnectionException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     /**
@@ -19,28 +26,41 @@ public class AddressBook {
      */
     public AddressBook(DataBase dataBase) throws DataBaseConnectionException {
         this.dataBase = dataBase;
+        this.people = new ArrayList<Person>();
 
     }
 
-    public String getOwner(Person person){
-        this.person = person;
+
+    public AddressBook() throws DataBaseConnectionException {
+    }
+
+    public Person getOwner(){
+        return owner;
+    }
+
+    public void setOwner(Person person) {
+        this.owner = person;
+    }
+    public void addPerson(Person person){
+        people.add(person);
+    }
+    public void removePerson(Person person){
+        people.remove(person);
+    }
+    public Person getPersonByEmail(String email) {
+        for (Person person : people){
+            if(person.getEmail().equals(email)){
+                return person;
+            }
+        }
         return null;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public List<Person> getPeople() {
+    public List<Person> getAllPeople(Person person){
         return people;
     }
 
-    public void setPerson(){
-        this.person = person;
-    }
-
-    public void setPeople(){
-        this.people = people;
-        return ;
+    public boolean saveAll(){
+        return true;
     }
 }
